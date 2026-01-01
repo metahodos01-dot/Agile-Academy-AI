@@ -1,0 +1,7 @@
+{
+  "name": "Agile Academy.AI by MetàHodòs",
+  "description": "Corso interattivo Agile per Scrum Master e Product Owner basato sui pilastri MetàHodòs, con giochi esperienziali, time-boxing e sfide AI.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
