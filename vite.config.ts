@@ -3,24 +3,26 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', 
+  // 'base' impostata a './' garantisce che i percorsi degli asset siano relativi
+  // e funzionino correttamente su Vercel o GitHub Pages.
+  base: './', 
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
   },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    chunkSizeWarningLimit: 1000, // Alza il limite per evitare i warning gialli
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', '@google/genai'],
+          'react-vendor': ['react', 'react-dom'],
+          'genai-vendor': ['@google/genai']
         },
       },
     },
   },
-  // Fix: Removed historyApiFallback as it is not a valid property in Vite's server configuration.
-  // Vite handles SPA history API fallback automatically in development mode.
   server: {
+    // In locale, Vite gestisce automaticamente il fallback delle rotte SPA
   }
 });
